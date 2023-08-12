@@ -15,9 +15,9 @@ são facilmente aplicadas a outras linguagens com o mesmo paradigma como o C#.
 * [Classes e Objetos](#co)
   * [Definindo classes e objetos](#dco)
   * [Atributos e métodos de classe](#amc)
-* Encapsulamento e Modificadores de Acesso
-  * Visibilidade de membros (public, private, protected)
-  * Métodos getters e setters
+* [Encapsulamento e Modificadores de Acesso](#ema)
+  * [Visibilidade de membros (public, private, protected)](#vm)
+   * [Métodos getters, setters e Construtor](#mgsc)
 * Herança e Polimorfismo
   * Herança de classes e subclasses
   * Polimorfismo e sobrescrita de métodos
@@ -115,7 +115,7 @@ uma instância concreta da classe, ela é a represetação real da entidade Cach
 
 ### <a name="dco">Definição de classes e objetos</a>
 
-*Obs: Os atributos e métodos será explicado no próximo tópico, peço que quando
+*Obs: Os atributos e métodos serão explicados no próximo tópico, peço que quando
 finalizar a leitura do próximo tópico volte para esta para ter uma melhor compreensão
 do assunto e também não deixe de praticar pois a prática é a aliada que nos leva
 a excelência.*
@@ -129,6 +129,7 @@ que os objetos desse tipo terão. É importante notar que uma classe é apenas u
 e não ocupa espaço na memória.
 
 Exemplo de uma classe em Java:
+
 ```java
 public class Pessoa {
     // Atributos 
@@ -148,6 +149,7 @@ public class Pessoa {
     }
 }
 ```
+
 **Objeto:**
 Um objeto é uma instância concreta de uma classe. Ele representa um único item ou entidade 
 que possui características `(atributos)` e pode realizar ações `(métodos)` conforme definido na classe. 
@@ -243,3 +245,73 @@ por todos os objetos da mesma classe, enquanto os métodos de classe realizam op
 a necessidade de criar instâncias.
 
 #
+
+### <a name="ema">Encapsulamento e Modificadores de Acesso</a>
+
+*Nesta seção, vamos explorar o conceito de encapsulamento em Programação Orientada a Objetos (P.O.O.), juntamente com os modificadores 
+de acesso que controlam a visibilidade dos membros de uma classe.*
+
+#### <a name="vm">Visibilidade de membros (public, private, protected)</a>
+
+Os modificadores de acesso **determinam como os atributos e métodos de uma classe podem ser acessados por outras partes do programa**. 
+Os três principais modificadores de acesso são:
+
+* **public**: Membros públicos podem ser acessados a partir de qualquer lugar, seja dentro da classe, subclasses ou outras classes.
+
+* **private**: Membros privados são acessíveis apenas dentro da classe onde foram declarados. Não podem ser acessados diretamente de
+  fora da classe.
+
+* **protected**: Membros protegidos são semelhantes aos privados, mas também podem ser acessados por subclasses da classe onde foram
+  declarados.
+
+Segue uma tabela para facilitar o entendimento do conceito referente a a visibilidade de cada modificador:
+
+Modificador | Visibilidade
+----------- | ------------
+     public | Acesso em qualquer lugar.
+    private	| Acesso apenas dentro da própria classe.
+  protected	| Acesso dentro da classe e subclasses.
+  (default)	| Acesso dentro do mesmo pacote.
+
+
+### <a name="mgsc">Métodos getters, setters e Construtor></a>
+
+Métodos `getters e setters` são **importantíssimos para acessarmos e modificarmos atributos privados de uma classe de maneira controlada
+e padronizada**. Além disso, os construtores são usados para inicializar objetos. Aqui estão exemplos de implementação:
+
+
+```java
+public class Pessoa {
+    private String nome;
+    private int idade;
+
+    // Construtor
+    public Pessoa(String nome, int idade) {
+        this.nome = nome;
+        this.idade = idade;
+    }
+
+    // Getter para o nome
+    public String getNome() {
+        return nome;
+    }
+
+    // Setter para o nome
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    // Getter para a idade
+    public int getIdade() {
+        return idade;
+    }
+
+    // Setter para a idade
+    public void setIdade(int idade) {
+        this.idade = idade;
+    }
+}
+```
+
+Neste exemplo, a classe `Pessoa` encapsula os atributos `nome` e `idade`. Os métodos `getters e setters` permitem o acesso 
+controlado a esses atributos, enquanto o construtor é usado para inicializar os objetos da classe.
