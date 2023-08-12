@@ -268,10 +268,10 @@ Segue uma tabela para facilitar o entendimento do conceito referente a a visibil
 
 Modificador | Visibilidade
 ----------- | ------------
-     public | Acesso em qualquer lugar.
-    private	| Acesso apenas dentro da própria classe.
-  protected	| Acesso dentro da classe e subclasses.
-  (default)	| Acesso dentro do mesmo pacote.
+public | Acesso em qualquer lugar.
+private	| Acesso apenas dentro da própria classe.
+protected	| Acesso dentro da classe e subclasses.
+(default)	| Acesso dentro do mesmo pacote.
 
 
 ### <a name="mgsc">Métodos getters, setters e Construtor></a>
