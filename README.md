@@ -18,9 +18,9 @@ são facilmente aplicadas a outras linguagens com o mesmo paradigma como o C#.
 * [Encapsulamento e Modificadores de Acesso](#ema)
   * [Visibilidade de membros (public, private, protected)](#vm)
    * [Métodos getters, setters e Construtor](#mgsc)
-* Herança e Polimorfismo
-  * Herança de classes e subclasses
-  * Polimorfismo e sobrescrita de métodos
+* [Herança e Polimorfismo](#hp)
+  * [Herança de classes e subclasses](#hcs)
+  * [Polimorfismo e sobrescrita de métodos](#psm)
 
 #
 
@@ -150,7 +150,10 @@ public class Pessoa {
 }
 ```
 
+#
+
 **Objeto:**
+
 Um objeto é uma instância concreta de uma classe. Ele representa um único item ou entidade 
 que possui características `(atributos)` e pode realizar ações `(métodos)` conforme definido na classe. 
 Cada objeto criado a partir de uma classe tem seu próprio conjunto de valores para os atributos.
@@ -213,6 +216,7 @@ todas as instâncias da classe. Ele é usado para rastrear o número total de ob
 
 
 **Métodos de Classe:**
+
 Os métodos de classe são as ações ou comportamentos que um objeto da classe pode executar. Eles são funções definidas na classe 
 e podem ser chamados em objetos dessa classe para realizar operações específicas.
 
@@ -313,5 +317,118 @@ public class Pessoa {
 }
 ```
 
-Neste exemplo, a classe `Pessoa` encapsula os atributos `nome` e `idade`. Os métodos `getters e setters` permitem o acesso 
-controlado a esses atributos, enquanto o construtor é usado para inicializar os objetos da classe.
+Neste exemplo, a classe `Pessoa` encapsula os atributos `nome` e `idade`. Os métodos `getters e setters` permitem o 
+acesso  controlado a esses atributos, enquanto o construtor é usado para inicializar os objetos da classe.
+
+## <a name="hp">Herança e Polimorfismo</a>
+
+Neste tópico darei mais atenção e explicarei com o maior número de detalhes possível pois são dois conceitos essenciais
+para a dominação desse paradigma. Dominando esses conceitos fica mais fácil de fazer quaisquer coisas envolvendo esse paradigma 
+além de também permitir o avanço no estudo de recursos mais avançados da linguagem tal como implementação de programas mais 
+eficientes e complexos.
+
+A herança e o polimorfismo são dois mecanismos importantíssimos em linguagens que possuem o paradigma de orientação a
+objetos. Na teoria a herança é um **conceito em que uma classe (subclasse) é criada com base em outra classe já existente 
+(superclasse)**. A subclasse herda os atributos e métodos da superclasse, permitindo reutilização de código e estabelecendo 
+uma relação de "é um". Já o Polimorfismo é um princípio que **permite que objetos de diferentes classes sejam tratados de 
+forma uniforme através de interfaces comuns**. Isso possibilita a substituição de implementações e a execução de métodos de
+maneiras específicas para cada classe, promovendo flexibilidade e reutilização de código.
+
+### <a name="hcs">Herança de classes e subclasses</a>
+
+A herança como já explicado, é um mecanismo que permite criar uma nova classe (subclasse ou classe derivada) com base em uma 
+classe existente (superclasse ou classe base). A subclasse herda os atributos e métodos da superclasse, além de poder adicionar 
+novos atributos e métodos ou sobrescrever os existentes.
+
+#
+
+#### Criando uma subclasse em Java utilizando herança
+
+Para criar uma subclasse em Java, utilizamos a palavra-chave `extends`. A subclasse **herda todos os membros (atributos e métodos 
+não privados) da superclasse**.
+
+```java
+//Superclasse
+public class Animal {
+    void emitirSom() {
+       System.out.println("Som genérico de um animal");
+   }
+}
+```
+
+```java
+//Subclasse
+public class Cachorro extends Animal {
+    // ...
+}
+```
+
+No exemplo acima a classe `Cachorro` herdou as mesmas características que a Classe `Animal` definiu no seu corpo, obtendo a relação de
+um Cachorro **É UM** Animal. Além disso, os membros herdados de uma superclasse podem ser acessados diretamente em uma subclasse. Eles
+mantêm a visibilidade original (public, protected) na subclasse.
+
+#
+
+#### Métodos de Sobrescrita
+
+Em muitos casos, você pode querer **modificar o comportamento de um método herdado na subclasse**. Isso é feito através da sobrescrita de método, 
+usando a anotação `@Override`.
+
+```java
+public class Cachorro extends Animal {
+    @Override
+    void emitirSom() {
+        System.out.println("Latido de um cachorro");
+    }
+}
+```
+
+Nesse exemplo o método que existia na superclasse foi herdado pela subclasse e sobrescrito, alterando assim o seu comportamento original.
+
+#
+
+#### Palavra-chave `super`
+
+A palavra-chave  `super` é **usada para chamar construtores e métodos da superclasse**. Isso é útil para evitar ambiguidades entre membros 
+herdadose membros da própria classe.
+
+Utilize a herança quando houver uma relação "é um" clara entre as classes. Evite herança apenas por conveniência, priorizando a composição 
+e a modularização.
+
+Exemplo Prático:
+
+```java
+public class Veiculo {
+    int velocidade;
+
+    void acelerar() {
+        // Lógica para acelerar
+    }
+}
+```
+
+Nesse exemplo a classe `Veiculo` possui um atributo velocidade e um método `acelerar()` podendo receber uma lógica para essa ação.
+
+```java
+public class Carro extends Veiculo {
+    int numPortas;
+
+    @Override
+    void acelerar() {
+        super.acelerar();
+        // Lógica específica para carros
+    }
+}
+```
+
+Aqui a Classe `Carro` herda todos os atributos (`velocidade`) e métodos (`acelerar()`) da superclasse (`Veiculo`), além disso essa Classe
+também possui um atributo específico da subclasse que é o `numPortas`, além de sobrescrever o método `acelerar()` chamando a lógica que já
+existe na superclasse com a palavra-chave `super` e complementando uma lógica adicional respeitada apenas pelas Classes Carro.
+
+#### Dicas e Boas Práticas:
+
+* Use herança quando houver uma relação lógica e natural entre as classes.
+* Evite hierarquias profundas e complexas de herança.
+* Prefira [composição](https://www.devmedia.com.br/entendendo-o-conceito-de-heranca-e-composicao/25456) quando a relação não for claramente "é um".
+* Sempre use a anotação `@Override` ao sobrescrever métodos.
+* Sempre utiliza a palavra-chave `super`para acessar membros da superclasse.
