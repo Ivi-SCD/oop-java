@@ -19,8 +19,8 @@ são facilmente aplicadas a outras linguagens com o mesmo paradigma como o C#.
   * [Visibilidade de membros (public, private, protected)](#vm)
    * [Métodos getters, setters e Construtor](#mgsc)
 * [Herança e Polimorfismo](#hp)
-  * [Herança de classes e subclasses](#hcs)
-  * [Polimorfismo e sobrescrita de métodos](#psm)
+  * [Herança de Classes, Subclasses e Sobrescrita de Métodos](#hcssm)
+  * [Polimorfismo](#p)
 
 #
 
@@ -334,7 +334,7 @@ uma relação de "é um". Já o Polimorfismo é um princípio que **permite que 
 forma uniforme através de interfaces comuns**. Isso possibilita a substituição de implementações e a execução de métodos de
 maneiras específicas para cada classe, promovendo flexibilidade e reutilização de código.
 
-### <a name="hcs">Herança de classes e subclasses</a>
+### <a name="hcssm">Herança de Classes, Subclasses e Sobrescrita de Métodos</a>
 
 A herança como já explicado, é um mecanismo que permite criar uma nova classe (subclasse ou classe derivada) com base em uma 
 classe existente (superclasse ou classe base). A subclasse herda os atributos e métodos da superclasse, além de poder adicionar 
@@ -432,3 +432,112 @@ existe na superclasse com a palavra-chave `super` e complementando uma lógica a
 * Prefira [composição](https://www.devmedia.com.br/entendendo-o-conceito-de-heranca-e-composicao/25456) quando a relação não for claramente "é um".
 * Sempre use a anotação `@Override` ao sobrescrever métodos.
 * Sempre utiliza a palavra-chave `super`para acessar membros da superclasse.
+
+#
+
+### <a name="p">Polimorfismo</a>
+
+Nesta seção, vamos mergulhar fundo no conceito de polimorfismo em Programação Orientada a Objetos (P.O.O.) usando a linguagem Java. 
+O polimorfismo é um dos pilares da P.O.O. que **permite que objetos de diferentes classes sejam tratados de maneira uniforme através de 
+interfaces comuns**. Vamos explorar suas variantes, implementações e benefícios em detalhes.
+
+#
+
+#### Tipos de Polimorfismo
+
+**a) Polimorfismo de Sobrecarga**
+
+É quando um único método possui várias implementações, diferenciadas por parâmetros. Isso é conhecido como sobrecarga de método.
+
+**b) Polimorfismo de Substituição**
+
+Ocorre quando uma subclasse substitui o método de sua superclasse. Isso é conhecido como sobrescrita de método (Tratado anteriormente 
+na seção de Herança), utilizando a anotação `@Override`.
+
+#
+
+#### Polimorfismo de Sobrecarga
+
+A sobrecarga permite que um método tenha diferentes assinaturas (número ou tipo de parâmetros). O compilador seleciona automaticamente 
+a versão correta do método com base nos argumentos passados.
+
+#
+
+#### Polimorfismo de Substituição
+
+A substituição de método ocorre quando uma subclasse implementa um método com a mesma assinatura da superclasse. O método da subclasse 
+substitui o método da superclasse.
+
+#
+
+#### Exemplo:
+
+```java
+class Forma {
+    void desenhar() {
+        // Lógica para desenhar uma forma
+    }
+}
+
+class Circulo extends Forma {
+    @Override
+    void desenhar() {
+        // Lógica para desenhar um círculo
+    }
+}
+
+class Quadrado extends Forma {
+    @Override
+    void desenhar() {
+        // Lógica para desenhar um quadrado
+    }
+}
+```
+
+Neste exemplo, temos uma hierarquia de classes que ilustra o polimorfismo. A classe base `Forma` define 
+um método chamado `desenhar()`, que tem uma implementação genérica para desenhar qualquer forma. As classes 
+`Circulo` e `Quadrado` são subclasses da classe `Forma` e sobrescrevem o método `desenhar()` com lógicas específicas 
+para desenhar um círculo e um quadrado, respectivamente.
+
+Aqui está como esse exemplo funciona de forma mais detalhada:
+
+1. A classe base `Forma`:
+  * Ela possui um método `desenhar()` que fornece uma implementação genérica para desenhar uma forma qualquer.
+2. A classe `Circulo`:
+  * Esta classe estende a classe `Forma`.
+  * Ela sobrescreve o método desenhar() com uma lógica específica para desenhar um círculo.
+3. A classe `Quadrado`:
+  * Esta classe também estende a classe `Forma`.
+  * Ela sobrescreve o método `desenhar()` com uma lógica específica para desenhar um quadrado.
+    
+Agora, veremos como o polimorfismo entra em ação:
+
+```java
+public class Main {
+    public static void main(String[] args) {
+        Forma forma1 = new Circulo();
+        Forma forma2 = new Quadrado();
+        
+        forma1.desenhar(); // Chamada ao método desenhar() da classe Circulo
+        forma2.desenhar(); // Chamada ao método desenhar() da classe Quadrado
+    }
+}
+```
+
+Neste trecho, criamos instâncias das classes `Circulo` e `Quadrado` e as atribuímos a variáveis do tipo `Forma`. 
+Quando chamamos o método `desenhar()` em cada uma dessas variáveis, o Java utiliza a implementação correta do 
+método para cada tipo de forma. Isso demonstra o polimorfismo, onde objetos de diferentes classes são tratados 
+de maneira uniforme através da classe base, permitindo a flexibilidade e a extensibilidade do código.
+
+#
+
+#### Dicas e Boas Práticas:
+* Utilize interfaces e herança para promover polimorfismo.
+* Utilize a anotação `@Override` ao substituir métodos.
+* Entenda quando usar sobrecarga e substituição.
+
+Para finalizarmos, verificamos nesta seção que o Polimorfismo é de extrema importância para a construção de
+sistemas flexíveis e escaláveis. Ele nos traz diversos benefícios ao nosso código como reutilização de código,
+escrita de código mais genérico, implementação de design patterns como [Strategy](https://github.com/Ivi-SCD/gof-design-patterns#strategy) 
+e [Factory](https://github.com/Ivi-SCD/gof-design-patterns#factory) além de também facilitar a manutenção e 
+extensão do sistema.
