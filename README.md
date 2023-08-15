@@ -24,6 +24,11 @@ são facilmente aplicadas a outras linguagens com o mesmo paradigma como o C#.
 
 #
 
+#### Lista de Exercicios
+* [Classes e  Objetos](https://github.com/Ivi-SCD/poo-java/tree/main/exercises-pt/classes-e-objetos.md)
+* [Encapsulamento e Modificadores de Acesso](https://github.com/Ivi-SCD/poo-java/tree/main/exercises-pt/encapsulamento-e-modificadores.md)
+* [Herança e Polimorfismo](https://github.com/Ivi-SCD/poo-java/tree/main/exercises-pt/heranca-e-polimorfismo.md)
+
 ## <a name="i">Introdução</a>
 
 ### <a name="oqpoo">O que é Programação Orientada a Objetos?</a>
@@ -40,6 +45,9 @@ tornamos ele um objeto para manipulação na linguagem.
 public class Telefone {
 }
 ```
+
+Os 4 principais pilares da Programação Orientada a Objetos são **Abstração, Encapsulamento,
+Herança e Polimorfismo.**
 
 #
 
