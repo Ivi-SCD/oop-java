@@ -1,4 +1,13 @@
-# Programação Orientada a Objetos (P.O.O) 
+<div align="center">
+ 
+ ![PROGRAMAÇÃO ORIENTADA A OBJETOS](https://github.com/Ivi-SCD/poo-java/assets/81643916/14e08a34-7c21-4a8c-9b83-1ca6333257ea)
+ 
+ [![License MIT](https://img.shields.io/badge/MIT%20License-white?style=for-the-badge&logo=mit&logoColor=black)](https://github.com/Ivi-SCD/poo-java/blob/main/LICENSE)
+ 
+ 
+</div>
+
+ #
 
 Esse repositório foi criado com o intuito de ajudar estudantes que desejam
 iniciar seus estudos em Programação Orientada a Objetos ou melhorar suas 
@@ -15,6 +24,7 @@ são facilmente aplicadas a outras linguagens com o mesmo paradigma como o C#.
 * [Classes e Objetos](#co)
   * [Definindo classes e objetos](#dco)
   * [Atributos e métodos de classe](#amc)
+  * [Métodos Estáticos e de Instância](#mei)
 * [Encapsulamento e Modificadores de Acesso](#ema)
   * [Visibilidade de membros (public, private, protected)](#vm)
    * [Métodos getters, setters e Construtor](#mgsc)
@@ -255,6 +265,71 @@ Em resumo, **os atributos de classe definem o estado ou as características dos 
 comportamento ou as ações que os objetos podem executar**. Os atributos de classe podem ser específicos de cada objeto ou compartilhados 
 por todos os objetos da mesma classe, enquanto os métodos de classe realizam operações específicas e podem ser chamados na classe sem 
 a necessidade de criar instâncias.
+
+#
+
+### <a name="mei">Métodos Estáticos e de Instância</a>
+
+Na Programação Orientada a Objetos, os métodos em uma classe podem ser categorizados em dois tipos principais: **métodos estáticos e métodos 
+de instância**.
+
+#### Métodos Estáticos
+
+Os métodos estáticos, também conhecidos como métodos de classe, **pertencem à classe em vez de pertencer a instâncias individuais dessa classe**.
+Eles são definidos com o modificador `static`. Métodos estáticos não podem acessar ou modificar atributos de instância, pois não estão vinculados 
+a nenhuma instância específica. Eles são invocados usando o nome da classe, não uma instância.
+
+Os métodos estáticos possui algumas características:
+
+- Eles podem ser chamados diretamente usando o nome da classe, sem a necessidade de criar uma instância.
+- Eles são frequentemente usados pra operações que se aplicam a toda a classe, como utilitários e funções auxiliares.
+- Eles não podem acessar variáveis de instância diretamente, mas podem acessar variáveis estáticas (também conhecidas como variáveis de classe) e
+outros métodos estáticos.
+
+Exemplo de método estático:
+
+```java
+public class MathUtils {
+    // Exemplo de Método Estático que retorna soma dois valores
+    public static int soma(int a, int b) {
+        return a + b;
+    }
+}
+```
+
+
+#### Métodos de Instância
+
+Métodos de instância, por outro lado, estão **vinculados a objetos específicos criados a partir de uma classe**. Eles podem acessar e modificar 
+atributos de instância e também podem chamar outros métodos de instância e métodos estáticos da mesma classe.
+
+Os métodos de instância são definidos sem o modificador `static`. Eles são chamados em uma instância específica da classe, usando a notação 
+de ponto após a instância.
+
+Exemplo de método de instância:
+
+```java
+public class Circulo {
+    private double raio;
+
+    public Circulo(double raio) {
+        this.raio = raio;
+    }
+
+    // Exemplo de Método de Instância que calcula a área de um circulo
+    public double calcularArea() {
+        return Math.PI * raio * raio;
+    }
+}
+```
+Uso Adequado de Métodos Estáticos e de Instância:
+
+- Use métodos estáticos para funcionalidades que não dependem do estado da instância e não precisam de acesso a atributos
+de instância.
+- Use métodos de instância para operações que envolvem o estado da instância e requerem acesso aos atributos de instância.
+- Lembre-se de que os métodos estáticos não podem ser sobrescritos, pois não estão associados a instâncias.
+- Ao entender a diferença entre métodos estáticos e de instância, você pode escolher o tipo certo de método para a tarefa
+em questão e criar classes mais coesas e eficientes.
 
 #
 
