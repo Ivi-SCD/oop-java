@@ -25,9 +25,10 @@ são facilmente aplicadas a outras linguagens com o mesmo paradigma como o C#.
   * [Definindo classes e objetos](#dco)
   * [Atributos e métodos de classe](#amc)
   * [Métodos Estáticos e de Instância](#mei)
+  * [Classes Genéricas (Generics)](#cg)
 * [Encapsulamento e Modificadores de Acesso](#ema)
   * [Visibilidade de membros (public, private, protected)](#vm)
-   * [Métodos getters, setters e Construtor](#mgsc)
+  * [Métodos getters, setters e Construtor](#mgsc)
 * [Herança e Polimorfismo](#hp)
   * [Herança de Classes, Subclasses e Sobrescrita de Métodos](#hcssm)
   * [Polimorfismo](#p)
@@ -330,6 +331,99 @@ de instância.
 - Lembre-se de que os métodos estáticos não podem ser sobrescritos, pois não estão associados a instâncias.
 - Ao entender a diferença entre métodos estáticos e de instância, você pode escolher o tipo certo de método para a tarefa
 em questão e criar classes mais coesas e eficientes.
+
+#
+
+### <a name="cg">Classes Genéricas (Generics)</a>
+
+As classes genéricas são um recurso fundamental na linguagem Java que permitem criar componentes reutilizáveis que podem 
+trabalhar com diferentes tipos de dados, mantendo a segurança de tipos em tempo de compilação. Isso ajuda a evitar erros 
+relacionados a tipos e promove a reutilização de código.
+
+#### Declaração de Classe Genérica
+
+A declaração de uma classe genérica é feita usando a sintaxe Classe<T>, onde T é um parâmetro de tipo genérico que representa 
+o tipo que será fornecido quando a classe for instanciada.
+
+```java
+public class MinhaClasse<T> {
+    // Atributos, métodos, construtores, etc.
+}
+```
+
+#### Uso de Classes Genéricas
+
+As classes genéricas permitem que você escreva código que funciona com tipos específicos sem precisar criar uma classe 
+separada para cada tipo. Isso é especialmente útil para coleções, estruturas de dados e algoritmos que não dependem de um 
+tipo específico.
+
+##### Exemplo de Uso: Lista Genérica
+Suponha que você queira criar uma lista que possa armazenar qualquer tipo de dado. Com uma classe genérica, você pode criar uma estrutura de dados flexível e reutilizável.
+
+```java
+public class MinhaLista<T> {
+    private Object[] elementos;
+    private int tamanho;
+
+    public MinhaLista(int capacidade) {
+        elementos = new Object[capacidade];
+        tamanho = 0;
+    }
+
+    public void adicionar(T elemento) {
+        if (tamanho < elementos.length) {
+            elementos[tamanho] = elemento;
+            tamanho++;
+        }
+    }
+
+    public T obter(int indice) {
+        if (indice >= 0 && indice < tamanho) {
+            return (T) elementos[indice];
+        }
+        throw new IndexOutOfBoundsException("Índice inválido");
+    }
+}
+```
+
+Nesse exemplo, a classe `MinhaLista` é genérica, permitindo que você crie listas de qualquer tipo.
+
+Instanciando uma Lista Genérica
+
+```java
+MinhaLista<Integer> listaDeInteiros = new MinhaLista<>(10);
+MinhaLista<String> listaDeStrings = new MinhaLista<>(5);
+
+listaDeInteiros.adicionar(42);
+listaDeStrings.adicionar("Olá, Mundo!");
+
+Integer numero = listaDeInteiros.obter(0);
+String texto = listaDeStrings.obter(0);
+Restrições e Limitações
+```
+
+É possível adicionar restrições aos tipos que podem ser usados em uma classe genérica. Isso é feito usando a palavra-chave `extends` ou `super`.
+
+```java
+public class MinhaClasse<T extends Number> {
+    // ...
+}
+```
+
+Isso limita os tipos que podem ser usados a subclasses da wrapper class `Number`.
+
+
+#
+
+### <a name="cc"><Construtores Chaining/a>
+
+
+
+#
+
+### <a name="ci">Classes Interas (Inner Classes)</a>
+
+
 
 #
 
