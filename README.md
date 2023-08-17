@@ -1,10 +1,11 @@
 <div align="center">
- 
- ![PROGRAMAÇÃO ORIENTADA A OBJETOS](https://github.com/Ivi-SCD/poo-java/assets/81643916/14e08a34-7c21-4a8c-9b83-1ca6333257ea)
- 
- [![License MIT](https://img.shields.io/badge/MIT%20License-white?style=for-the-badge&logo=mit&logoColor=black)](https://github.com/Ivi-SCD/poo-java/blob/main/LICENSE)
- 
- 
+  
+  ![PROGRAMAÇÃO ORIENTADA A OBJETOS](https://github.com/Ivi-SCD/poo-java/assets/81643916/14e08a34-7c21-4a8c-9b83-1ca6333257ea)
+   
+  [![License MIT](https://img.shields.io/github/license/Ivi-SCD/poo-java?style=for-the-badge&logo=License")](https://github.com/Ivi-SCD/poo-java/blob/main/LICENSE)
+  ![Stars](https://img.shields.io/github/stars/Ivi-SCD/poo-java?style=for-the-badge&logo=License")
+  ![Forks](https://img.shields.io/github/forks/Ivi-SCD/poo-java?style=for-the-badge&logo=License")
+  
 </div>
 
  #
@@ -26,6 +27,7 @@ são facilmente aplicadas a outras linguagens com o mesmo paradigma como o C#.
   * [Atributos e métodos de classe](#amc)
   * [Métodos Estáticos e de Instância](#mei)
   * [Classes Genéricas (Generics)](#cg)
+  * [Construtores Chaining](#cc) 
 * [Encapsulamento e Modificadores de Acesso](#ema)
   * [Visibilidade de membros (public, private, protected)](#vm)
   * [Métodos getters, setters e Construtor](#mgsc)
@@ -415,8 +417,34 @@ Isso limita os tipos que podem ser usados a subclasses da wrapper class `Number`
 
 #
 
-### <a name="cc"><Construtores Chaining/a>
+### <a name="cc"><Construtores Chaining</a>
 
+Construtores chaining, também conhecido como encadeamento de construtores, é uma técnica usada em programação para criar construtores 
+que chamam outros construtores da mesma classe. Isso ajuda a simplificar a criação de objetos com diferentes configurações, tornando 
+o código mais flexível e legível.
+
+#### Sintaxe de Encadeamento de Construtores
+
+A ideia básica do encadeamento de construtores é que um construtor chame outro usando a palavra-chave this. O construtor chamado deve 
+estar definido na mesma classe e deve ter uma assinatura que corresponda aos argumentos passados.
+
+```java
+public class MinhaClasse {
+    private int parametro1;
+    private int parametro2;
+
+    public MinhaClasse(int parametro1) {
+        this(parametro1, 0); // Chama o outro construtor da classe
+    }
+
+    public MinhaClasse(int parametro1, int parametro2) {
+        this.parametro1 = parametro1;
+        this.parametro2 = parametro2;
+    }
+}
+```
+
+Nesse exemplo, o primeiro construtor chama o segundo construtor passando um valor padrão para `parametro2`.
 
 
 #
