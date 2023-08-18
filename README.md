@@ -10,8 +10,8 @@
 
  #
 
-Esse repositório foi criado com o intuito de ajudar estudantes que desejam
-iniciar seus estudos em Programação Orientada a Objetos ou melhorar suas 
+Esse repositório foi criado com o intuito de **ajudar estudantes que desejam
+iniciar seus estudos em Programação Orientada a Objetos** ou melhorar suas 
 habilidades em linguagens que possuem esse paradigma, a principal linguagem
 que será utilizada nesse repositório será a Linguagem Java, porém seus conceitos
 são facilmente aplicadas a outras linguagens com o mesmo paradigma como o C#.
@@ -28,6 +28,7 @@ são facilmente aplicadas a outras linguagens com o mesmo paradigma como o C#.
   * [Métodos Estáticos e de Instância](#mei)
   * [Classes Genéricas (Generics)](#cg)
   * [Construtores Chaining](#cc) 
+  * [Classes Internas (Inner Classes)](#ci)
 * [Encapsulamento e Modificadores de Acesso](#ema)
   * [Visibilidade de membros (public, private, protected)](#vm)
   * [Métodos getters, setters e Construtor](#mgsc)
@@ -37,7 +38,7 @@ são facilmente aplicadas a outras linguagens com o mesmo paradigma como o C#.
 
 #
 
-#### Lista de Exercicios
+#### Lista de Exercios
 * [Classes e  Objetos](https://github.com/Ivi-SCD/poo-java/tree/main/exercises-pt/classes-e-objetos.md)
 * [Encapsulamento e Modificadores de Acesso](https://github.com/Ivi-SCD/poo-java/tree/main/exercises-pt/encapsulamento-e-modificadores.md)
 * [Herança e Polimorfismo](https://github.com/Ivi-SCD/poo-java/tree/main/exercises-pt/heranca-e-polimorfismo.md)
@@ -451,7 +452,97 @@ Nesse exemplo, o primeiro construtor chama o segundo construtor passando um valo
 
 ### <a name="ci">Classes Interas (Inner Classes)</a>
 
+As classes internas, também conhecidas como classes aninhadas, são classes definidas dentro de outras classes em Java. 
+Elas podem ser úteis para melhorar a organização do código além de também encapsular funcionalidades relacionadas. 
+Existem quatro tipos principais de classes internas em Java:
 
+#### Classe Interna de Membro (Member Inner Class):
+
+Uma classe interna de membro é **definida diretamente dentro de outra classe e tem acesso aos membros (campos e métodos) da 
+classe externa**, incluindo aqueles marcados como privados. Para criar uma instância da classe interna de membro, você precisa 
+primeiro criar uma instância da classe externa.
+
+```java
+public class Outer {
+    private int outerField;
+
+    public class Inner {
+        private int innerField;
+
+        public void doSomething() {
+            outerField = 10;
+            innerField = 5;
+        }
+    }
+}
+```
+
+#### Classe Interna Estática (Static Nested Class):
+
+Uma classe interna estática é semelhante a uma classe de membro, mas é definida como estática. Isso significa que ela não 
+tem acesso aos membros não estáticos da classe externa, mas pode ser instanciada diretamente sem a necessidade de uma instância 
+da classe externa.
+
+```java
+public class Outer {
+    private static int outerField;
+
+    public static class Nested {
+        private int nestedField;
+
+        public void doSomething() {
+            outerField = 10;
+            nestedField = 5;
+        }
+    }
+}
+```
+
+#### Classe Local (Local Inner Class):
+
+Uma classe local é definida dentro de um método ou bloco de código. Ela tem acesso aos membros da classe externa e também aos 
+parâmetros e variáveis finais do método ou bloco onde está definida.
+
+```java
+public class Outer {
+    private int outerField = 10;
+
+    public void createLocalInner() {
+        final int localVar = 5;
+
+        class LocalInner {
+            public void doSomething() {
+                outerField = 20;
+                System.out.println(localVar);
+            }
+        }
+
+        LocalInner inner = new LocalInner();
+        inner.doSomething();
+    }
+}
+```
+
+#### Classe Anônima (Anonymous Inner Class):
+
+Uma classe anônima é uma forma especial de classe local que é definida e instanciada em uma única expressão. Elas são frequentemente 
+usadas para implementar interfaces ou extender classes abstratas de forma concisa.
+
+```java
+public class Outer {
+    public void createAnonymousInner() {
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("Anonymous inner class running");
+            }
+        };
+
+        Thread thread = new Thread(runnable);
+        thread.start();
+    }
+}
+```
 
 #
 
