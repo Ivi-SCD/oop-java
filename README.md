@@ -32,6 +32,7 @@ são facilmente aplicadas a outras linguagens com o mesmo paradigma como o C#.
 * [Encapsulamento e Modificadores de Acesso](#ema)
   * [Visibilidade de membros (public, private, protected)](#vm)
   * [Métodos getters, setters e Construtor](#mgsc)
+  * [Métodos Final e Atributos Final](#mfaf)
 * [Herança e Polimorfismo](#hp)
   * [Herança de Classes, Subclasses e Sobrescrita de Métodos](#hcssm)
   * [Polimorfismo](#p)
@@ -615,6 +616,75 @@ public class Pessoa {
 
 Neste exemplo, a classe `Pessoa` encapsula os atributos `nome` e `idade`. Os métodos `getters e setters` permitem o 
 acesso  controlado a esses atributos, enquanto o construtor é usado para inicializar os objetos da classe.
+
+#
+
+### <a name="mfaf">Métodos Final e Atributos Final</a>
+
+Em Java, a palavra-chave `final` pode ser usada em métodos, atributos e classes para indicar que eles não podem ser 
+alterados ou sobrescritos (no caso de métodos) e que não podem ser reatribuídos (no caso de atributos). Vamos dar uma 
+olhada detalhada em como `final` é usado para métodos e atributos:
+
+#### Métodos `final`
+
+Quando um método é declarado como `final`, ele não pode ser sobrescrito por classes derivadas (subclasses). Isso 
+significa que a implementação do método na classe base é definitiva e não pode ser alterada nas subclasses.
+
+```java
+class Base {
+    public final void printMessage() {
+        System.out.println("Isso eh um metodo final");
+    }
+}
+
+class Derived extends Base {
+    // Tentativa de sobrescrever o método final
+    /*public void printMessage() {
+        System.out.println("Isso nao funciona :(");
+    }*/
+}
+```
+
+No exemplo acima, a tentativa de sobrescrever o método `printMessage()` na classe `Derived` resultaria em um 
+erro de compilação.
+
+#### Atributos `final`
+
+Quando um atributo é declarado como `final`, ele deve ser inicializado exatamente uma vez. Após a inicialização, 
+seu valor não pode ser alterado.
+
+```java
+class FinalAttributeExample {
+    final int constantValue;
+
+    public FinalAttributeExample(int value) {
+        this.constantValue = value;
+    }
+
+    // Tentativa de reatribuir um atributo final
+    /*public void changeValue() {
+        this.constantValue = 10; // Isso causaria um erro de compilação.
+    }*/
+}
+```
+
+No exemplo acima, o atributo `constantValue` é inicializado no construtor e não pode ser alterado posteriormente.
+
+#### Extra: Classes `final`
+
+Quando uma classe é declarada como `final`, isso significa que ela não pode ser estendida por outras classes para 
+criar subclasses. Ou seja, uma classe `final` não pode ser usada como superclasse para herança. Isso é útil quando 
+você deseja garantir que uma classe não seja modificada ou estendida para evitar quebras de código ou comportamentos 
+inesperados.
+
+```java
+public final class FinalClassExample {
+    // Conteúdo da classe
+}
+
+```
+
+#
 
 ## <a name="hp">Herança e Polimorfismo</a>
 
