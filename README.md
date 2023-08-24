@@ -36,6 +36,7 @@ são facilmente aplicadas a outras linguagens com o mesmo paradigma como o C#.
 * [Herança e Polimorfismo](#hp)
   * [Herança de Classes, Subclasses e Sobrescrita de Métodos](#hcssm)
   * [Polimorfismo](#p)
+  * [Polimorfismo com Interfaces](#pci)
 
 #
 
@@ -907,3 +908,51 @@ sistemas flexíveis e escaláveis. Ele nos traz diversos benefícios ao nosso c�
 escrita de código mais genérico, implementação de design patterns como [Strategy](https://github.com/Ivi-SCD/gof-design-patterns#strategy) 
 e [Factory](https://github.com/Ivi-SCD/gof-design-patterns#factory) além de também facilitar a manutenção e 
 extensão do sistema.
+
+#
+
+### <a name="pci">Polimorfismo com Interfaces</a>
+
+Antes da explicação do Polimorfismo com o uso de Interfaces em si, primeiro temos que entender o que são interfaces,
+uma interface é nada menos que uma **coleção de métodos abstratos (sem implementação) e constantes (váriaves finais). 
+Ela define um contrato que as classes que a implementam devem seguir.** Em Java, as interfaces são declaradas usando a
+palavra-chave `interface`.
+
+#### Implementando Interfaces
+
+Uma classe pode implementar uma ou várias interfaces. Para isso, temos que usar a palavra-chave `implements`. A classe deve 
+fornecer implementações para todos os métodos abstratos da interface.
+
+```java
+interface Animal {
+    void fazerSom();
+}
+
+class Cachorro implements Animal {
+    @Override
+    public void fazerSom() {
+        System.out.println("Au Au!");
+    }
+}
+
+class Gato implements Animal {
+    @Override
+    public void fazerSom() {
+        System.out.println("Miau!");
+    }
+}
+```
+
+#### Aplicação do Polimorfismo com interfaces
+
+Você pode usar polimorfismo para tratar objetos de classes diferentes como se fossem do mesmo tipo de interface. Isso é 
+feito criando uma referência à interface e atribuindo a ela uma instância de qualquer classe que implemente essa interface.
+
+
+```java
+Animal animal1 = new Cachorro();
+Animal animal2 = new Gato();
+
+animal1.fazerSom(); // Saída: Au Au!
+animal2.fazerSom(); // Saída: Miau!
+```
