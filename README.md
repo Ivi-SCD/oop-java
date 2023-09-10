@@ -37,6 +37,7 @@ são facilmente aplicadas a outras linguagens com o mesmo paradigma como o C#.
   * [Herança de Classes, Subclasses e Sobrescrita de Métodos](#hcssm)
   * [Polimorfismo](#p)
   * [Polimorfismo com Interfaces](#pci)
+  * [Classes Internas Anônimas](#cia)
 
 #
 
@@ -956,3 +957,123 @@ Animal animal2 = new Gato();
 animal1.fazerSom(); // Saída: Au Au!
 animal2.fazerSom(); // Saída: Miau!
 ```
+
+#
+
+## <a name="cia">Classes Internas Anônimas</a>
+
+Como já previamente comentado antes na sessão de Classes Internas (Inner Classes), as classes internas
+anônimas são uma característica da linguagem Java que **permite criar classes dentro de outras classes sem
+nomeá-las explicitamente**. Elas são **frequentemente usadas quando se deseja dar uma implementação única e
+limitada pelo escopo**, como a implementação de interfaces funcionais ou extensão de classes abstratas.
+
+#
+
+#### Sintaxe Básica
+
+Sua sintaxe de criação é a seguinte:
+
+```java
+interface MinhaInterface {
+    void meuMetodo();
+}
+
+public class ClasseExterna {
+    public void metodoDaClasseExterna() {
+        MinhaInterface objeto = new MinhaInterface() {
+            @Override
+            public void meuMetodo() {
+                System.out.println("Método da classe interna anônima.");
+            }
+        };
+        objeto.meuMetodo();
+    }
+}
+```
+
+Nesse exemplo, estamos criando uma classe interna anônima que implementa a interface `MinhaInterface`. A
+classe interna anônima fornece uma implementação para o método `meuMetodo`. Observe que não atribuímos 
+diretamente um nome à classe interna.
+
+### Casos de Uso
+
+#### Implementação de Interfaces Funcionais
+
+Classes internas anônimas são frequentemente usadas para implementar interfaces funcionais, que são 
+interfaces que contêm um único método abstrato. Por exemplo, a interface `Runnable` pode ser implementada 
+usando uma classe interna anônima:
+
+```java
+public class Exemplo {
+    public static void main(String[] args) {
+        Runnable minhaRunnable = new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("Executando minha tarefa.");
+            }
+        };
+        
+        Thread thread = new Thread(minhaRunnable);
+        thread.start();
+    }
+}
+```
+
+#### Event Listeneres
+
+Classes internas anônimas também são usadas em Java para tratar eventos, como cliques de botão em uma GUI
+que são "ouvidos" por um event listener. Aqui está um exemplo com um botão Swing:
+
+```java
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class Exemplo {
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("Exemplo");
+        JButton botao = new JButton("Clique-me");
+
+        botao.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null, "Botão clicado!");
+            }
+        });
+
+        frame.add(botao);
+        frame.pack();
+        frame.setVisible(true);
+    }
+}
+```
+
+#### Extensão de Classes Abstratas
+
+Classes internas anônimas podem ser usadas para estender classes abstratas no local, fornecendo implementações 
+concretas para os métodos abstratos. Aqui está um exemplo:
+
+```java
+abstract class ClasseAbstrata {
+    abstract void meuMetodoAbstrato();
+}
+
+public class Exemplo {
+    public static void main(String[] args) {
+        ClasseAbstrata objeto = new ClasseAbstrata() {
+            @Override
+            void meuMetodoAbstrato() {
+                System.out.println("Implementação do método abstrato.");
+            }
+        };
+        
+        objeto.meuMetodoAbstrato();
+    }
+}
+```
+
+#
+
+Por fim, em resumo, as Classes Internas Anônimas são um recurso útil em Java para lidar com implementações 
+simples de interfaces e subclasses de classes abstratas. Elas são particularmente úteis em situações onde a 
+reutilização da classe não é necessária.
